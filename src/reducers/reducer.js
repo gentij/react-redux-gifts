@@ -11,12 +11,13 @@ const reducer = (state = initialState, action) => {
         case DELETE_GIFT:
             return {...state, gifts: state.gifts.filter(gift => gift.id !== action.id)};
         case EDIT_GIFT:
-            state.gifts.map(gift => {
+            state.gifts.forEach(gift => {
                 if(gift.id === action.payload.id) {
                     gift = action.payload;
                 }
                 return state;
             })
+            break;
         default:
             return state;
     }
