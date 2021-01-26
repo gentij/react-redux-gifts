@@ -16,7 +16,7 @@ export const useForm = (callback, initialState = {}, setErrors) => {
             return errors;
         }
         setErrors({});
-        callback()
+        callback();
     }
 
     return {

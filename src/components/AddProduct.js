@@ -2,11 +2,14 @@ import React,{ useState } from 'react'
 import { Form, Button } from 'semantic-ui-react'
 import FileBase from 'react-file-base64'
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from 'react-redux'
+import { addGift } from '../actions/actionCreators';
 
 import { useForm } from '../utils/hooks'
 
-const AddProduct = ({ gifts, setGifts }) => {
+const AddProduct = () => {
     const [errors, setErrors] = useState({});
+    const dispatch = useDispatch();
 
     let id = uuidv4();
 
@@ -20,7 +23,7 @@ const AddProduct = ({ gifts, setGifts }) => {
 
     function addProduct() {
         setInputs({...inputs, id: uuidv4()});
-        setGifts([...gifts, inputs]);
+        dispatch(addGift(inputs));
         setInputs({
             giftName: '',
             description: '',

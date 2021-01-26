@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { Card, Image, Button, Popup, Modal } from 'semantic-ui-react';
+import { useDispatch } from 'react-redux'
+import { deleteGift } from '../actions/actionCreators';
 
-const Gift = ({ gift: {id, giftName, description, giftersName, image}, deleteGift}) => {
+const Gift = ({ gift: {id, giftName, description, giftersName, image}}) => {
     const [open, setOpen] = useState(false);
+    const dispatch = useDispatch();
 
+    const deleteHandler = id => {
+        dispatch(deleteGift(id));
+    }
     return (
         <>
         <Card>
@@ -26,7 +32,7 @@ const Gift = ({ gift: {id, giftName, description, giftersName, image}, deleteGif
             />
         </Card.Content>
         <Card.Content extra>
-            <Button color='red' onClick={() => deleteGift(id)}>Delete</Button>
+            <Button color='red' onClick={() => deleteHandler(id)}>Delete</Button>
             <Button>Edit</Button>
         </Card.Content>
         </Card>
