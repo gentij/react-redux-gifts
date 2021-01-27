@@ -8,11 +8,10 @@ import Header from './components/Header';
 import AddProduct from './components/AddProduct';
 import Gift from './components/Gift';
 import Footer from './components/Footer';
-import store from './store'
 
 const App = () => {
   const gifts = useSelector(state => {
-    console.log(store.getState());
+    localStorage.setItem('gifts', JSON.stringify(state.gifts));
     return state.gifts;
   });
 

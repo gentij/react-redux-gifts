@@ -1,7 +1,7 @@
 import { ADD_GIFT, DELETE_GIFT, EDIT_GIFT } from '../actions/actionTypes';
 
 const initialState = {
-    gifts: []
+    gifts: JSON.parse(localStorage.getItem('gifts')) ? JSON.parse(localStorage.getItem('gifts')) : []
 }
 
 const reducer = (state = initialState, action) => {
@@ -13,11 +13,13 @@ const reducer = (state = initialState, action) => {
         case EDIT_GIFT:
             state.gifts.forEach(gift => {
                 if(gift.id === action.payload.id) {
-                    gift = action.payload;
+                    gift.giftName = action.payload.giftName;
+                    gift.description = action.payload.description;
+                    gift.giftersName = action.payload.giftersName;
+                    gift.image = action.payload.image;
                 }
-                return state;
             })
-            break;
+            return state;
         default:
             return state;
     }

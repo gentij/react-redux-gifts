@@ -17,6 +17,6 @@ export const deleteGift = payload => {
 export const editGift = payload => {
     return {
         type: EDIT_GIFT,
-        payload: payload
+        payload
     }
 }
